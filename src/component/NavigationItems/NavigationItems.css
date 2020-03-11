@@ -1,0 +1,21 @@
+
+.NavigationItems {
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    flex-direction: column;
+    transition: all 1s ease-out;
+    z-index: 999;
+}
+
+@media (max-width: 969px){
+    
+    /* .shut{
+        transform: translateX(-100%);
+    }
+
+    .Open{
+        transform: translateX(0);
+    } */
+}

@@ -1,0 +1,32 @@
+.NavigationItem {
+    margin: 20px;
+    list-style: none;
+    position: relative;
+}
+
+.NavigationItem a{
+    cursor: pointer;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    text-overflow: ellipsis;
+    word-wrap: initial;
+    transition: color .2s;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active{
+    color: rgb(100, 237, 184);
+}
+
+@media(max-width: 969px){
+    .NavigationItem {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        padding: 10px;
+    }
+}
+

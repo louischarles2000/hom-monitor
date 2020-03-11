@@ -1,0 +1,18 @@
+.Home{
+    width: 100%;
+    height: auto;
+}
+
+h1{
+    color: cornflowerblue;
+    padding: 10px;
+    margin: 20px;
+    font-weight: lighter;
+}
+
+h2{
+    color: cadetblue;
+    font-weight: lighter;
+    font-size: 30px;
+    padding: 10px;
+}
