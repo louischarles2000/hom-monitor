@@ -1,0 +1,54 @@
+
+
+.Top{
+    display: block;
+    width: 100%;
+}
+
+.heading{
+    width: 30%;
+    display: inline-block;
+}
+
+h2{
+    color: cadetblue;
+    font-weight: lighter;
+    font-size: 20px;
+    padding: 10px;
+}
+.numbers{
+    width: 70%;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.numbers p{
+    display: inline-block;
+    padding-right: 10%;
+    font-weight: lighter;
+    color: #555;
+}
+
+.all, .read, .unread{
+    /* font-size: 20px; */
+    font-weight: bold;
+}
+
+.all{
+    color: rgb(140, 129, 211);
+}
+.read{
+    color: rgb(226, 138, 123);
+}
+.unread{
+    color: rgb(81, 173, 115);
+}
+@media(max-width: 500px){
+    .numbers, .heading{
+        display: block;
+        width: 100%;
+    }
+    .numbers{
+        text-align: center;
+    }
+}

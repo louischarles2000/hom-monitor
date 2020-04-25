@@ -2,17 +2,68 @@
     width: 100%;
     height: 100vh;
 }
+.Header{
+    width: 100%;
+    height: auto;
+    /* border-bottom: 1px solid #555; */
+    z-index: 996;
+    top: 0px;
+    padding: 10px;
+    box-shadow: 1px 2px 4px #ccc;
+}
+.Header h1{
+    margin: 0px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+}
 .Dashboard{
     background-color: rgb(21, 156, 156);
     height: 100%;
     width: 20%;
     float: left;
+    border-right: 1px solid rgb(22, 134, 129);
+    box-shadow: 1px 0px 8px 1px rgba(29, 87, 77, 0.74);
+    z-index: 1900;
 }
 main{
-    float: left;
-    width: 80%;
-    height: 100%;
+    float: right;
+    width: 79.5%;
+    height: auto;
     overflow: hidden;
-    overflow-y: scroll;
-    background-color: #fff;
+    /* overflow-y: scroll; */
+    /* background-color: #fff; */
+    z-index: 100;
+}
+
+@media(max-width: 1050px){
+    .Open{
+        transform: translateX(0%);
+    }
+    .Close{
+        transform: translateX(-102%);
+    }
+    .Dashboard{
+        position: fixed;
+        width: 40%;
+        transition: transform .5s;
+    }
+    main{
+        float: none;
+        width: 100%;
+        margin: 0px;
+        padding: 20px auto;
+        overflow-y: hidden;
+    }
+}
+
+@media(max-width: 430px){
+    .Header h1{
+        text-align: right;
+        padding-right: 30px;
+    }
+    .Dashboard{
+        width: 70%;
+    }
 }

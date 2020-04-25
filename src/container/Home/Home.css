@@ -5,14 +5,10 @@
 
 h1{
     color: cornflowerblue;
+    font-size: 20px;
     padding: 10px;
     margin: 20px;
     font-weight: lighter;
+    text-align: center;
 }
 
-h2{
-    color: cadetblue;
-    font-weight: lighter;
-    font-size: 30px;
-    padding: 10px;
-}

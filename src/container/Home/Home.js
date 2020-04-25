@@ -1,24 +1,34 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+import React, {  } from 'react';
 import cssClasses from './Home.css';
-import Aux from '../../HOC/Auxiliary/Auxiliary';
+import Messages from '../../component/Messages/Messages';
+import Spinner from '../../component/Spinner/Spinner';
+import Empty from '../../component/ReusableComps/Note/empty/empty';
+import Notify from '../../component/ReusableComps/Note/notify/notify';
+// import { getNumbers } from '.././../Utility';
+import NumbersPanel from '../../component/ReusableComps/numbersPanel/numbersPanel';
 
-class Home extends Component{
-    componentDidMount(){
-        axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
-        .then(response => {
-            console.log(response);
-        })
+const Home = props => {
+    let messages;
+    if(props.orders){
+        messages = <Messages orders={props.orders} reload={props.reload}/>
+        if(props.orders.length === 0){
+            messages = <Empty />;
+        }
+    }
+    if(props.loading){
+        messages = <Spinner />;
+    }
+    if(props.error){
+        messages = <Notify type="danger">{props.error.message}</Notify>
     }
 
-    render(){
-        return(
-            <div className={cssClasses.Home}>         
-                <h1>WELLSPRINGS CONNECTIONS ENTERPRISES ADMIN PAGE</h1>
-                <h2>New:</h2>
-            </div>
-        );
-    }
-}
+    return(
+        <div className={cssClasses.Home}>
+            <NumbersPanel heading="Home" numbers={props.numbers}/>
+            {messages}
+        </div>
+    );
+};
+
 
 export default Home;

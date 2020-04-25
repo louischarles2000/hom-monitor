@@ -9,6 +9,20 @@
     z-index: 999;
 }
 
+.NavItem{
+    border-bottom: 1px solid rgb(28, 134, 148);
+    padding: 15px 0px;
+    width: 90%;
+    margin: 10px auto;
+    background-color: rgba(7, 150, 150, 0.554);
+    transition: box-shadow .2s;
+    text-align: center;
+}
+
+.NavItem:hover{
+    box-shadow: 1px 8px 5px rgb(28, 134, 148);
+}
+
 @media (max-width: 969px){
     
     /* .shut{

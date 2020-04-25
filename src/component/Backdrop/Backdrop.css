@@ -1,0 +1,10 @@
+.Backdrop{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 24, 24, 0.394);
+    position: fixed;
+    z-index: 997;
+}
+.Remove{
+    display: none;
+}

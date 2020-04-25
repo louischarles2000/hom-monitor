@@ -1,0 +1,42 @@
+.Messages{
+    /* background-color: cornflowerblue; */
+    width: 95%;
+    height: 73vh;
+    margin: 0px auto;
+    padding: 10px;
+    padding-top: 20px;
+    border-top: 1px dashed rgb(83, 233, 185);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.Remove{
+    overflow-y: hidden;
+}
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 2px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(21, 156, 156);
+    border-radius: 2px;
+  }
+
+  
+@media(max-width: 700px){
+    
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
