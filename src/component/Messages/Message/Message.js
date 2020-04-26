@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import { withRouter } from 'react-router-dom';
-import { faTrash, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEnvelopeOpen, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import * as firebase from 'firebase';
 
 import cssClasses from './Message.css';
-import * as firebase from 'firebase';
-import { getTime, textLength, unreadMessage, readMessage, removeMessage} from '../../../Utility';
+import { getTime, textLength} from '../../../Utility';
 import IconList from '../../ReusableComps/IconList/IconList';
 // import Notify from '../../ReusableComps/Note/notify/notify';
 
@@ -55,7 +55,7 @@ const Message = props => {
         });
     }
 
-    const icons = [
+    let icons = [
         {
             name: faEnvelopeOpen, 
             text: 'Mark as read', 
@@ -67,22 +67,28 @@ const Message = props => {
     ];
 
       const onClickHandler = () => {
-        readMessage(props.id);
+          readMessageHandler();
         // props.history.push(`/message?id=${props.id}&unreadMethod=${unReadMessageHandler}`);
         props.history.push(`/message?id=${props.id}`);
     }
     let messageCss = [cssClasses.Message, ''];
     let messageComponent;
-    let readStatus = [cssClasses.container, cssClasses.unread]
+    let readStatus = [cssClasses.container, cssClasses.unread];
     if(props.read.read || read){
         readStatus = [cssClasses.container, ''];
+        icons = [
+            {
+                name: faEnvelope, 
+                text: 'Mark as unread', 
+                clicked:  unReadMessageHandler},
+            {
+                name: faTrash, 
+                text: 'Delete', 
+                clicked: removeMessageHandler}
+        ];
     }
     if(remove){
         messageCss = [cssClasses.Message, cssClasses.Remove];
-        setTimeout(() => {
-            messageCss = ['', cssClasses.Delete];
-        }, 1000);
-
         messageComponent = <div className={cssClasses.Delete}></div>
     }else{
         messageComponent = (
@@ -105,7 +111,7 @@ const Message = props => {
                                 </div> :
                     <div className={classes.join(' ')}>
                         <p>{getTime(
-                            props.time.year ,
+                            props.time.year,
                             props.time.month,
                             props.time.date,
                             props.time.hours,

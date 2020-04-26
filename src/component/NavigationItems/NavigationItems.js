@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { withRouter } from 'react-router-dom';
 
 import cssClasses from './NavigationItems.css';
@@ -6,11 +6,15 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import ItemsNumber from '../ReusableComps/itemsNumber/itemsNumber';
 const navigationItems = props => {
     let classes = [cssClasses.NavigationItems, cssClasses.shut];
-
+    const [unread, setUnread] = useState();
+    const propUnread = props.unread;
+    useEffect(() => {
+        setUnread(propUnread);
+    }, [propUnread]);
     if(props.show){
         classes = [cssClasses.NavigationItems, cssClasses.Open];
     }
-
+// console.log(unread);
     const navigationItems = [
         {link: '/', name: 'home'},
         {link: '/events', name: 'events'},
@@ -28,18 +32,16 @@ const navigationItems = props => {
         if(service === 'gen-supply'){
             service = 'general Supply';
         }
-        if(props.unread !== null){
-            for(let key in props.unread){
-                if(props.unread[key].service === service){
-                    unreadMessages.push(props.unread);
+        if(unread !== null){
+            for(let key in unread){
+                if(unread[key].service === service){
+                    unreadMessages.push(    unread);
                 }
             }
     
         }
         return unreadMessages.length;
     }
-    console.log(getUnreadMessages('/textile'));
-    console.log(props.unread);
     return(
         <nav className={classes.join(' ')}>
             {navigationItems.map(item => (

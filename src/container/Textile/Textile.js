@@ -15,7 +15,7 @@ class Textile extends Component{
         if(this.props.orders !== null){
             const arr = this.props.orders.filter(el => el.data.service === 'textile');
             // console.log(this.props.orders + 'orders');
-            messages = <Messages orders={arr}/>
+            messages = <Messages orders={arr} reload={this.props.reload}/>
             numbers = {
                 ...this.props.numbers,
                 ...getNumbers(arr)

@@ -31,48 +31,41 @@ class App extends Component {
 
 componentDidMount(){
     this.setState({loading: true});
-    // const arr1 = [1,2];
-    // const arr2 = [1,2];
-    // if(JSON.stringify(arr1) === JSON.stringify(arr2)){
-    //   console.log('IT WORKS');
-    // }else{
-    //   console.log('NOOOOOOO!')
-    // }
     this.reloadAppHandler();
-    // console.log('test   ' + unread.length);
 }
 
-componentDidUpdate(){
-  const arr = [];
-  firebase.database().ref().once('value')
-    .then(data => {
-      console.log(data.child('/orders').val());
-      const obj = data.child('/orders').val();
-      for(let key in obj){
-        arr.push({id: key, data: obj[key]});
-      }
-      if(JSON.stringify(this.state.orders) !== JSON.stringify(arr)){
-        // console.log('IT WORKS');
-        this.reloadAppHandler();
-      }
-    })
+// componentDidUpdate(){
+//   const arr = [];
+//   firebase.database().ref().once('value')
+//     .then(data => {
+//       const obj = data.child('/orders').val();
+//       for(let key in obj){
+//         arr.push({id: key, data: obj[key]});
+//       }
+//       if(( this.state.orders && JSON.stringify(this.state.orders) !== JSON.stringify(arr))){
+//         // this.reloadAppHandler();
+//       }
+      
+//     })
+// }
+
+componentWillUnmount(){
+  // firebase.database().goOffline();
+  axios.Cancel;
 }
 
 reloadAppHandler = () => {
   const orderArray = [];
   const unread = [];
-
   axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
     .then(response => {
-      console.log(response.data);
         for(let key in response.data){
-            if(response.data[key].read === false){
+            if(response.data[key].read.read === false){
               unread.push(response.data[key]);
             }
             orderArray.push({id: key, data: response.data[key]});
         }
-        console.log('test   ' + unread.length);
-        this.setState({loading: false, orders: orderArray, unread: unread, numbers: getNumbers(orderArray)})
+        this.setState({loading: false, orders: orderArray, unread: unread, numbers: getNumbers(orderArray)});
     }).catch(err => this.setState({loading: false, error: err}));
 
 }

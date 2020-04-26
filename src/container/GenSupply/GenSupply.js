@@ -15,7 +15,7 @@ class GenSupply extends Component{
         if(this.props.orders !== null){
             const arr = this.props.orders.filter(el => el.data.service === 'general Supply');
             console.log(arr);
-            messages = <Messages orders={arr}/>
+            messages = <Messages orders={arr} reload={this.props.reload}/>
             numbers = {
                 ...this.props.numbers,
                 ...getNumbers(arr)

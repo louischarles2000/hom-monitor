@@ -1,23 +1,3 @@
-import React from 'react';
-import * as firebase from 'firebase';
-import Notify from './component/ReusableComps/Note/notify/notify';
-
-export const unreadMessage = (id) => {
-    return firebase.database().ref().child(`orders/${id}/read/`).update({read: false});
-};
-
-export const removeMessage = (id) => {
-    firebase.database().ref().child(`orders/${id}`).remove()
-    .then(() => {
-        alert('message has been deleted');
-        <Notify type="danger">Message deleted</Notify>
-    })
-};
-
-export const readMessage = (id) => {
-    firebase.database().ref().child(`orders/${id}/read/`).update({read: true});
-};
-
 export const updateObject = (oldState, currentState) => {
     return {
         ...oldState,
@@ -73,7 +53,6 @@ export const textLength = sentence => {
 
 export const getTime = (year, month, day, hours, minutes) => {
     const date = new Date();
-    console.log(date.getHours());
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let  time;
     if(date.getFullYear() === year){
@@ -91,7 +70,7 @@ export const getTime = (year, month, day, hours, minutes) => {
                     time = hours + ':' + minutes;
                 }
             }else{
-                time = date.getDate() - day + ' D';
+                time = day + ' ' + months[month - 1];
             }
         }else{
             time = day + ' ' + months[month - 1];

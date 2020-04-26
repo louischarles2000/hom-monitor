@@ -7,8 +7,8 @@ import IconList from '../IconList/IconList';
 import Icon from '../IconList/Icon/Icon';
 const Panel = props => {
     const icons = [
-        {name: faEnvelope, text: 'Mark as unread', clicked: () => console.log('clicked')},
-        {name: faTrash, text: 'Delete', clicked: () => console.log('clicked')}
+        {name: faEnvelope, text: 'Mark as unread', clicked: props.unreadHandler},
+        {name: faTrash, text: 'Delete', clicked: props.remove}
     ];
     return(
         <div className={cssClasses.Panel}>

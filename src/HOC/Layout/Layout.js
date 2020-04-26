@@ -16,8 +16,9 @@ class Layout extends Component{
             };
         });
     }
-    bcakDropHandler = () => {
-        this.setState({showManu: false})
+    backDropHandler = () => {
+        this.setState({showManu: false});
+        this.props.reload();
     }
     render(){
         let position;
@@ -53,7 +54,7 @@ class Layout extends Component{
                
                 <Backdrop show={this.state.showManu} clicked={this.toggleShowManuHandler}/>
                 <div className={cssClasses.join(' ')}>
-                    <NavigationItems clicked={this.bcakDropHandler} unread={this.props.unread} reload={this.props.reload}/> 
+                    <NavigationItems clicked={this.backDropHandler} unread={this.props.unread} reload={this.props.reload}/> 
                 </div>
                 <main>
                     <div className={classes.Header}>
