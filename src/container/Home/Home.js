@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { useEffect } from 'react';
 import cssClasses from './Home.css';
 import Messages from '../../component/Messages/Messages';
 import Spinner from '../../component/Spinner/Spinner';
@@ -8,6 +8,9 @@ import Notify from '../../component/ReusableComps/Note/notify/notify';
 import NumbersPanel from '../../component/ReusableComps/numbersPanel/numbersPanel';
 
 const Home = props => {
+    useEffect(() => {
+        props.reload();  
+    }, []);
     let messages;
     if(props.orders){
         messages = <Messages orders={props.orders} reload={props.reload}/>

@@ -29,7 +29,10 @@ const MessageBody = props => {
                 }
             }
             setLoading(false);
-        }).catch(err => setError(err.message));
+        }).catch(err => {
+            setLoading(false);
+            setError(err.message);
+        });
     }, []);
     const unReadMessageHandler = () => {
         if(orderId){
@@ -39,10 +42,12 @@ const MessageBody = props => {
        
     }
     const removeMessageHandler = () => {
+        setDeleteMessage(true);
         if(orderId){
             setShowNotify(true);
             firebase.database().ref().child(`orders/${orderId}`).remove()
             .then(() => {
+                setDeleteMessage(false);
                 setShowNotify(false);
                 props.history.goBack();
             });
@@ -59,10 +64,13 @@ const MessageBody = props => {
     if(deleteMessage){
         notify = <Notify type="danger">Failed to delete!</Notify>
     }
+    if(error){
+        notify = <Notify type="danger">{error}</Notify>
+    }
     if(details){
         const date = details.date;
         let t = (date.hours > 12) ? 'PM' : 'AM';
-        const clock = (date.hours - 12) + ':' + date.minutes + ' ' + t;
+        const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
         const time = getTime(date.year, date.month, date.date, date.hours, date.minutes) + ', ' + date.year + ', ' + clock;
         body = (
             <div className={cssClasses.Container}>

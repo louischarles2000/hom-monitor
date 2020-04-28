@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import classes from  './Layout.css';
 import NavigationItems from '../../component/NavigationItems/NavigationItems';
 import Backdrop from '../../component/Backdrop/Backdrop';
+import User from '../../component/User/User';
+import * as firebase from 'firebase';
 const burgers = require('react-animated-burgers');
+
 class Layout extends Component{
     state = {
         showManu: false
@@ -19,6 +23,16 @@ class Layout extends Component{
     backDropHandler = () => {
         this.setState({showManu: false});
         this.props.reload();
+    }
+    logOutHandler = () => {
+        firebase.auth().signOut()
+        .then(() => {
+                localStorage.removeItem('authToken');
+                this.props.history.push('/auth');
+            });
+        
+            localStorage.removeItem('authToken');
+            this.props.history.push('/auth');
     }
     render(){
         let position;
@@ -54,6 +68,7 @@ class Layout extends Component{
                
                 <Backdrop show={this.state.showManu} clicked={this.toggleShowManuHandler}/>
                 <div className={cssClasses.join(' ')}>
+                    <User user={this.props.user} logout={this.logOutHandler} clicked={this.backDropHandler} addAdmin={this.props.addAdmin}/>
                     <NavigationItems clicked={this.backDropHandler} unread={this.props.unread} reload={this.props.reload}/> 
                 </div>
                 <main>
@@ -69,4 +84,4 @@ class Layout extends Component{
     }
 }
 
-export default Layout;
+export default withRouter(Layout);

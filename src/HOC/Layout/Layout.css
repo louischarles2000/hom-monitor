@@ -26,6 +26,7 @@
     border-right: 1px solid rgb(22, 134, 129);
     box-shadow: 1px 0px 8px 1px rgba(29, 87, 77, 0.74);
     z-index: 1900;
+    overflow-y: scroll;
 }
 main{
     float: right;

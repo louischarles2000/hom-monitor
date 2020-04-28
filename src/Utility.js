@@ -51,10 +51,43 @@ export const textLength = sentence => {
     return text + '...';
 }
 
+export const checkValidity = (value, rules) => {
+    let isValid = true;
+    if (!rules) {
+        return true;
+    }
+    
+    if (rules.required) {
+        isValid = value.trim() !== '' && isValid;
+    }
+
+    if (rules.minLength) {
+        isValid = value.length >= rules.minLength && isValid
+    }
+
+    if (rules.maxLength) {
+        isValid = value.length <= rules.maxLength && isValid
+    }
+
+    if (rules.isEmail) {
+        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        isValid = pattern.test(value) && isValid
+    }
+
+    if (rules.isNumeric) {
+        const pattern = /^\d+$/;
+        isValid = pattern.test(value) && isValid
+    }
+
+    return isValid;
+}
+
 export const getTime = (year, month, day, hours, minutes) => {
     const date = new Date();
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let  time;
+    const t = (date.hours > 12) ? 'PM' : 'AM';
+    const clock = (hours > 12 ? hours - 12 : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes)+ ' ' + t;
     if(date.getFullYear() === year){
         if(date.getMonth() === (month -1)){
             if(date.getDate() === day){
@@ -67,7 +100,7 @@ export const getTime = (year, month, day, hours, minutes) => {
                         time = date.getMinutes() - minutes + ' min';
                     }
                 }else{
-                    time = hours + ':' + minutes;
+                    time = clock;
                 }
             }else{
                 time = day + ' ' + months[month - 1];

@@ -4,6 +4,9 @@ import { withRouter } from 'react-router-dom';
 import cssClasses from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import ItemsNumber from '../ReusableComps/itemsNumber/itemsNumber';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
 const navigationItems = props => {
     let classes = [cssClasses.NavigationItems, cssClasses.shut];
     const [unread, setUnread] = useState();
@@ -15,8 +18,9 @@ const navigationItems = props => {
         classes = [cssClasses.NavigationItems, cssClasses.Open];
     }
 // console.log(unread);
+    const icon = <span><FontAwesomeIcon icon={faHome}/>  Home</span>;
     const navigationItems = [
-        {link: '/', name: 'home'},
+        {link: '/', name: icon},
         {link: '/events', name: 'events'},
         {link: '/stationary', name: 'stationary'},
         {link: '/gen-supply', name: 'gen supply'},

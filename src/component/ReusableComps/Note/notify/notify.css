@@ -1,7 +1,7 @@
 .Error{
-    width: 20%;
+    width: 30%;
     margin: 10px;
-    max-width: 12em;
+    max-width: 20em;
     padding: 10px;
     animation: slideIn 1.5s;
     box-shadow: 1px 4px 8px rgb(175, 175, 175);
