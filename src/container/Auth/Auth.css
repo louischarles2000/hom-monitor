@@ -12,7 +12,8 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     box-shadow: 1px 1px 20px 2px #ccc;
-    /* background-color: rgba(0, 255, 255, 0.142); */
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.483);
 }
 .Form h2{
     /* text-align: center; */

@@ -109,6 +109,10 @@
     .heading{
         width: 70%;
     }
+
+    .heading p{
+        font-size: 12px;
+    }
     .group{
         width: 80%;
     }

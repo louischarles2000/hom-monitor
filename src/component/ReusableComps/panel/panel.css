@@ -5,7 +5,7 @@
     /* position: fixed; */
     border-bottom: 1px solid rgba(201, 204, 203, 0.285);
     z-index: 995;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .Back{

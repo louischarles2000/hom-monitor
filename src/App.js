@@ -17,6 +17,7 @@ import MessageBody from './component/MessageBody/MessageBody';
 import Auth from './container/Auth/Auth';
 import { getNumbers, updateArray } from './Utility';
 import User from './component/User/User';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(props){
@@ -152,4 +153,19 @@ reloadAppHandler = () => {
   }
 }
 
+const mapStateToProps = state => {
+  return{
+    orders: state.orders,
+    loading: state.loading,
+    unread: state.unread,
+    error: state.error,
+    numbers: state.numbers
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+
+  }
+}
 export default App;
