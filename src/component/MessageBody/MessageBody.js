@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import * as firebase from 'firebase';
 
@@ -8,6 +9,7 @@ import cssClasses from './MessageBody.css';
 import Spinner from '../Spinner/Spinner';
 import { getTime } from '../../Utility';
 import Notify from '../ReusableComps/Note/notify/notify';
+import * as actionCreator from '../../Store/actions/orders';
 
 const MessageBody = props => {
     const [details, setDetails] = useState(null);
@@ -33,11 +35,19 @@ const MessageBody = props => {
             setLoading(false);
             setError(err.message);
         });
+        // for(let key in props.orders){
+        //     if(key === id){
+        //         setDetails(props.orders[key]);
+        //     }
+        // }
     }, []);
     const unReadMessageHandler = () => {
         if(orderId){
             firebase.database().ref().child(`orders/${orderId}/read/`).update({read: false})
-            .then(() => props.history.goBack());
+            .then(() => {
+                props.history.goBack();
+                props.onUpdate(props.orders);
+            });
         }
        
     }
@@ -100,4 +110,15 @@ const MessageBody = props => {
         </div>
     );
 };
-export default withRouter(MessageBody);
+const mapStateToProps = state => {
+    return{
+        orders: state.orders.orders
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onUpdate: (orders) => dispatch(actionCreator.update(orders))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MessageBody));

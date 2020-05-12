@@ -22,7 +22,7 @@ const Home = props => {
         messages = <Spinner />;
     }
     if(props.error){
-        messages = <Notify type="danger">{props.error.message}</Notify>
+        messages = <Notify type="danger">{props.error}</Notify>
     }
 
     return(

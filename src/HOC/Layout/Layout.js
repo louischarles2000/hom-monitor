@@ -6,6 +6,7 @@ import NavigationItems from '../../component/NavigationItems/NavigationItems';
 import Backdrop from '../../component/Backdrop/Backdrop';
 import User from '../../component/User/User';
 import * as firebase from 'firebase';
+import Search from '../../component/Search/Search';
 const burgers = require('react-animated-burgers');
 
 class Layout extends Component{
@@ -74,7 +75,11 @@ class Layout extends Component{
                 <main>
                     <div className={classes.Header}>
                         <div className={classes.Heading}>
-                            <h1>WELLSPRINGS ADMIN</h1>
+                            <div className={classes.HeadingSec}>
+                                <h1>WELLSPRINGS ADMIN</h1>
+                            </div>
+                            
+                            <Search />
                         </div>
                     </div>
                     {this.props.children}

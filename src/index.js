@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
 import authReducer from './Store/reducer/auth';
+import ordersReducer from './Store/reducer/orders';
 
 const config = {
     apiKey: "AIzaSyC1fsRxAEGONa7p2HdU06zcjZuSoB5aKcY",
@@ -20,10 +21,11 @@ const config = {
     measurementId: "G-Q439BYGW29"
 }
 firebase.initializeApp(config);
-// firebase.analytics();
+
 const rootReducer = combineReducers({
-    auth: authReducer
-})
+    auth: authReducer,
+    orders: ordersReducer
+});
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 

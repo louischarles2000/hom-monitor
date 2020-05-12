@@ -1,0 +1,46 @@
+.Search{
+    display: inline-block;
+    width: 30%;
+    /* padding: 5px;     */
+    margin-right: 20px;
+    animation: showUp 1s;
+    /* display: none; */
+}
+
+@keyframes showUp{
+    0%{transform: translateX(150%);}
+    100%{transform: translateX(0%);}
+}
+.SearchBar{
+    width: 65%;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.SearchBar input{
+    height: 15px;
+    margin: 0px;
+    border-radius: 5px;
+}
+.SearchBtn{
+    display: inline-block;
+    width: 25%;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 10%;
+    /* float: left; */
+}
+
+.SearchBtn button{
+    /* height: 20px; */
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(21, 156, 156);
+    cursor: pointer;
+}
+.SearchBtn button:hover{
+    background-color: rgb(26, 136, 136);
+}

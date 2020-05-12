@@ -18,16 +18,12 @@ import Auth from './container/Auth/Auth';
 import { getNumbers, updateArray } from './Utility';
 import User from './component/User/User';
 import { connect } from 'react-redux';
+import * as actionCreators from './Store/actions/orders';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      orders: null,
-      loading: false, 
-      error: null,
-      unread: null, 
-      numbers: null,
       isAuth: null,
       isSignup: false,
       user: null
@@ -46,30 +42,12 @@ componentDidMount(){
     }
   })
     this.setState({loading: true});
-    this.reloadAppHandler();
+    // this.reloadAppHandler();
+    this.props.onFetchOrders(this.props.orders);
 }
 
 componentDidUpdate(){
-  const arr = [];
-  const ur = [];
-  firebase.database().ref().once('value')
-    .then(data => {
-      const obj = data.child('/orders').val();
-      for(let key in obj){
-        if(obj[key].read.read === false){
-          ur.push(obj[key]);
-        }
-        arr.push({id: key, data: obj[key]});
-      }
-      if(( this.state.orders && JSON.stringify(this.state.orders) !== JSON.stringify(arr))){
-        // this.reloadAppHandler();
-        this.setState({orders: arr, unread: ur, numbers: getNumbers(arr)});
-      }      
-    });
-    const token = localStorage.getItem('authToken');
-    if(token){
-      // this.setState({isAuth: token});
-    }
+  // this.props.onUpdateOrders(this.props.orders); 
 }
 
 componentWillUnmount(){
@@ -83,32 +61,17 @@ addAdminHandler = () => {
   <Redirect to="/auth" />
 }
 
-reloadAppHandler = () => {
-  const orderArray = [];
-  const unread = [];
-  axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
-    .then(response => {
-        for(let key in response.data){
-            if(response.data[key].read.read === false){
-              unread.push(response.data[key]);
-            }
-            orderArray.push({id: key, data: response.data[key]});
-        }
-        this.setState({loading: false, orders: orderArray, unread: unread, numbers: getNumbers(orderArray)});
-    }).catch(err => this.setState({loading: false, error: err}));
-
-}
-
   render() {
     let numbers = null;
-    if(this.state.numbers){
-      numbers = this.state.numbers
+    if(this.props.numbers){
+      numbers = this.props.numbers
     }
+    console.log('NUmbers test: ' + numbers);
     const propsData = {
-      orders: this.state.orders,
-      loading: this.state.loading,
-      error: this.state.error,
-      reload: this.reloadAppHandler,
+      orders: this.props.orders,
+      loading: this.props.loading,
+      error: this.props.error,
+      reload: this.props.onUpdateOrders.bind(this, this.props.orders),
       numbers
     };
 
@@ -121,8 +84,8 @@ reloadAppHandler = () => {
     if(localStorage.getItem('authToken')){
       routes = (
         <Layout 
-          unread={this.state.unread} 
-          reload={this.reloadAppHandler} 
+          unread={this.props.unread} 
+          reload={this.props.onFetchOrders} 
           addAdmin={this.addAdminHandler}
           user={this.state.user}>
               <Switch>
@@ -155,17 +118,18 @@ reloadAppHandler = () => {
 
 const mapStateToProps = state => {
   return{
-    orders: state.orders,
-    loading: state.loading,
-    unread: state.unread,
-    error: state.error,
-    numbers: state.numbers
+    orders: state.orders.orders,
+    loading: state.orders.loading,
+    unread: state.orders.unread,
+    error: state.orders.error,
+    numbers: state.orders.numbers
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-
+      onFetchOrders: (prevOrders) => dispatch(actionCreators.fetchOrders(prevOrders)),
+      onUpdateOrders: (orders) => dispatch(actionCreators.update(orders))
   }
 }
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
