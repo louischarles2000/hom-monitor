@@ -46,6 +46,7 @@ export const textLength = sentence => {
             if(textArr.join('').length <= 30){
                 text = textArr.join(' ');
             }
+            return word;
         });
     }
     return text + '...';

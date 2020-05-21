@@ -29,7 +29,7 @@ class Textile extends Component{
             messages = <Spinner />;
         }
         if(this.props.error){
-            messages = <Notify type="danger">{this.props.error.message}</Notify>
+            messages = <Notify type="danger">{this.props.error}</Notify>
         }
         return (
             <div>

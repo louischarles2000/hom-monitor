@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { faTrash, faArrowLeft, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import cssClasses from './panel.css';
@@ -22,4 +21,4 @@ const Panel = props => {
     );
 };
 
-export default (Panel);
+export default Panel;

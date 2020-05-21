@@ -36,6 +36,8 @@
 .Details p:last-child {
     float: right;
     right: 10px;
+    font-weight: bold;
+    font-size: 14px;
 }
 .Message{
     width: 90%;
@@ -53,3 +55,8 @@
     word-spacing: 5px;
     text-align: justify;
 }
+
+
+/* @media(max-width: 450px){
+
+} */

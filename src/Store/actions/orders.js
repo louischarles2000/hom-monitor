@@ -2,7 +2,6 @@ import * as actionTypes from '../actionTypes';
 import firebase from 'firebase';
 import { getNumbers } from '../../Utility';
 import axios from 'axios';
-import { element } from 'prop-types';
 
 export const fetchOrdersStart = () => {
     return{
@@ -48,6 +47,13 @@ export const changeFilterValue = (value) => {
     }
 }
 
+export const toggleSearch = prevState => {
+    return {
+        type: actionTypes.TOGGLE_SEARCH,
+        toggle: !prevState
+    }
+}
+
 const searchStart = () => ({type: actionTypes.SEARCH_START});
 
 const searchSuccess = (results) => {
@@ -68,15 +74,16 @@ export const onUpdateSearchResults = (searchQuery, searchList) => {
         dispatch(searchStart());
         const results = [];
         const error = `"${searchQuery}" does not exist!`;
-        console.log(searchQuery);
-        searchList.map(element => {
-            if(element.data.name.toLowerCase().includes(searchQuery)){
-                // console.log(element.data.name.toLowerCase().includes(searchQuery));
-                results.push(element);
-            }
-        });
         if(searchQuery === '' || searchQuery === null){
             dispatch(fetchOrders(null));
+        }
+        if(searchList){
+            searchList.forEach(element => {
+                if(element.data.name.toLowerCase().includes(searchQuery)){
+                    results.push(element);
+                    return element;
+                }
+            });
         }
         if(results.length > 0){
             dispatch(searchSuccess(results));
@@ -114,7 +121,6 @@ export const fetchOrders = (prevOrders) => {
         
         const unread = [];
         const orderArray = [];
-        // firebase.
         axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
         .then(response => {
             for(let key in response.data){
@@ -122,9 +128,10 @@ export const fetchOrders = (prevOrders) => {
                   unread.push(response.data[key]);
                 }
                 orderArray.push({id: key, data: response.data[key]});
+                console.log(orderArray);
             }
             dispatch(fetchOrdersSuccess(orderArray, unread, getNumbers(orderArray)));
         })
-        .catch(err => dispatch(fetchOrderFail(err)));
+        .catch(err => dispatch(fetchOrderFail(err.message)));
     }
 }

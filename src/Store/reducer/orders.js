@@ -7,7 +7,9 @@ const initialState = {
     error: null,
     unread: null, 
     numbers: null,
-    search: ''
+    search: '',
+    searchList: null,
+    toggleSearch: false
 };
 
 const fetchOrdersStart = (state, action) => {
@@ -36,6 +38,10 @@ const updateOrders = (state, action) => {
     })
 }
 
+const toggleSearch = (state, action) => {
+    return updateObject(state, {toggleSearch: action.toggle});
+}
+
 const filterValue = (state, action) => {
     return updateObject(state, {search: action.value});
 }
@@ -62,6 +68,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SEARCH_START: return searchStart(state, action);
         case actionTypes.SEARCH_SUCCESS: return searchSuccess(state, action);
         case actionTypes.SEARCH_FAIL: return searchFail(state, action);
+        case actionTypes.TOGGLE_SEARCH: return toggleSearch(state, action);
         default: return state;
     }
 };

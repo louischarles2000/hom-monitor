@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import * as firebase from 'firebase';
 
 import classes from './App.css';
-import axios from 'axios'
 import Layout from './HOC/Layout/Layout';
 import Home from './container/Home/Home';
 import Events from './container/Events/Events';
@@ -15,8 +14,6 @@ import Office from './container/Office/Office';
 import Textile from './container/Textile/Textile';
 import MessageBody from './component/MessageBody/MessageBody';
 import Auth from './container/Auth/Auth';
-import { getNumbers, updateArray } from './Utility';
-import User from './component/User/User';
 import { connect } from 'react-redux';
 import * as actionCreators from './Store/actions/orders';
 
@@ -24,41 +21,23 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isAuth: null,
-      isSignup: false,
-      user: null
+      isSignup: false
     }
     
   }
 
 componentDidMount(){
   console.log(firebase.auth().currentUser);
-  firebase.auth().onAuthStateChanged(user => {
-    if(user){
-      console.log('user =====>' + user.email);
-      this.setState({user: user.email});
-    }else{
-      console.log('User is offline')
-    }
-  })
+  
     this.setState({loading: true});
     // this.reloadAppHandler();
     this.props.onFetchOrders(this.props.orders);
 }
 
-componentDidUpdate(){
-  // this.props.onUpdateOrders(this.props.orders); 
-}
-
-componentWillUnmount(){
-  // firebase.database().goOffline();
-  axios.Cancel;
-}
 
 addAdminHandler = () => {
   this.setState({isSignup: true});
-  console.log(this.props);
-  <Redirect to="/auth" />
+  this.props.history.push('/auth');
 }
 
   render() {
@@ -81,13 +60,13 @@ addAdminHandler = () => {
         <Redirect to="/auth" />
       </Switch>
     );
-    if(localStorage.getItem('authToken')){
+    if(localStorage.getItem('userEmail') || localStorage.getItem('authToken')){
       routes = (
         <Layout 
           unread={this.props.unread} 
           reload={this.props.onFetchOrders} 
           addAdmin={this.addAdminHandler}
-          user={this.state.user}>
+          user={localStorage.getItem('userEmail')}>
               <Switch>
                 <Route path="/events" render={() => <Events {...propsData}/>}/>
                 <Route path="/stationary" render={() => <Stationary {...propsData}/>}/>
@@ -122,7 +101,8 @@ const mapStateToProps = state => {
     loading: state.orders.loading,
     unread: state.orders.unread,
     error: state.orders.error,
-    numbers: state.orders.numbers
+    numbers: state.orders.numbers,
+    user: state.auth.user
   };
 }
 

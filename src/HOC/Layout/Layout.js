@@ -7,6 +7,7 @@ import Backdrop from '../../component/Backdrop/Backdrop';
 import User from '../../component/User/User';
 import * as firebase from 'firebase';
 import Search from '../../component/Search/Search';
+import Logo from '../../component/logo/logo';
 const burgers = require('react-animated-burgers');
 
 class Layout extends Component{
@@ -29,10 +30,12 @@ class Layout extends Component{
         firebase.auth().signOut()
         .then(() => {
                 localStorage.removeItem('authToken');
+                localStorage.removeItem('userEmail');
                 this.props.history.push('/auth');
             });
         
             localStorage.removeItem('authToken');
+            localStorage.removeItem('userEmail');
             this.props.history.push('/auth');
     }
     render(){
@@ -76,6 +79,7 @@ class Layout extends Component{
                     <div className={classes.Header}>
                         <div className={classes.Heading}>
                             <div className={classes.HeadingSec}>
+                                <Logo />
                                 <h1>WELLSPRINGS ADMIN</h1>
                             </div>
                             
