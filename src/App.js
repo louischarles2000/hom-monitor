@@ -16,6 +16,8 @@ import MessageBody from './component/MessageBody/MessageBody';
 import Auth from './container/Auth/Auth';
 import { connect } from 'react-redux';
 import * as actionCreators from './Store/actions/orders';
+import Records from './container/Records/Records';
+// firebase auth:import users.json --hash-algo=scrypt --rounds=8 --mem-cost=14
 
 class App extends Component {
   constructor(props){
@@ -32,6 +34,7 @@ componentDidMount(){
     this.setState({loading: true});
     // this.reloadAppHandler();
     this.props.onFetchOrders(this.props.orders);
+  
 }
 
 
@@ -56,11 +59,11 @@ addAdminHandler = () => {
 
     let routes = (
       <Switch>
-        <Route path="/auth" component={Auth} />
+        <Route path="/auth" exact component={Auth} />
         <Redirect to="/auth" />
       </Switch>
     );
-    if(localStorage.getItem('userEmail') || localStorage.getItem('authToken')){
+    if(localStorage.getItem('userEmail') !== null && localStorage.getItem('authToken') !== null ){
       routes = (
         <Layout 
           unread={this.props.unread} 
@@ -75,6 +78,7 @@ addAdminHandler = () => {
                 <Route path="/printing" render={() => <Printing {...propsData}/>}/>
                 <Route path="/office" render={() => <Office {...propsData}/>}/>
                 <Route path="/textile" render={() => <Textile {...propsData}/>}/>
+                <Route path="/records" render={() => <Records />} />
                 <Route path="/message" component={MessageBody} />
                 {this.state.isSignup ? <Route path="/auth" component={Auth} /> : null}
                 <Route path="/" exact render={() => <Home {...propsData} />}/>

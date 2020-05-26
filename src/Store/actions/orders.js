@@ -123,7 +123,9 @@ export const fetchOrders = (prevOrders) => {
         const orderArray = [];
         axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
         .then(response => {
+            console.log(response.data);
             for(let key in response.data){
+                // console.log('MOre tests: ' + response.data[key]);
                 if(response.data[key].read.read === false){
                   unread.push(response.data[key]);
                 }

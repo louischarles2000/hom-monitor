@@ -55,7 +55,6 @@ const searchSuccess = (state, action) => {
 }
 
 const searchFail = (state, action) => {
-    console.log(action.message);
     return updateObject(state, {loading: false, error: action.message, search: ''});
 }
 const reducer = (state = initialState, action) => {

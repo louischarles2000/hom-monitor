@@ -1,0 +1,52 @@
+.contactStatusPanel{
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid cadetblue;
+}
+
+.panelTitle{
+    display: inline-block;
+    width: 20%;
+    cursor: pointer;
+    transition: border-bottom .5s, background-color .5s;
+}
+
+.ActivePanel{
+    border-bottom: 2px solid cadetblue;
+    font-weight: bold;
+    background-color: rgba(95, 158, 160, 0.027);
+    animation: underLine .5s;
+    width: 60%;
+}
+
+.panelTitle:hover,
+.panelTitle:active{
+    /* border-bottom: 1px solid cadetblue; */
+    font-weight: bold;
+    background-color: rgba(95, 158, 160, 0.027);
+    /* animation: underLine 1s; */
+}
+
+@keyframes underLine {
+    0%{width: 20%;}
+    100%{width: 60%;}
+}
+.panelTitle p{
+    text-align: center;
+    text-transform: capitalize;
+    color: cadetblue;
+}
+
+@media (max-width: 810px){
+    .panelTitle p{
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
+@media(max-width: 450px){
+    .panelTitle p{
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+}

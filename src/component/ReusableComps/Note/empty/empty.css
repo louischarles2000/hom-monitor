@@ -21,6 +21,7 @@
 .Empty p{
     text-align: center;
     color: cadetblue;
+    text-transform: uppercase;
 }
 
 @media(max-width: 587px){

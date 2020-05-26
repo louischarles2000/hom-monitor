@@ -28,7 +28,7 @@ const navigationItems = props => {
         {link: '/printing', name: 'printing'},
         {link: '/office', name: 'office'},
         {link: '/textile', name: 'textile'},
-        {link: '/contacts', name: 'customers'},
+        {link: '/records', name: 'Records'},
     ]
     const getUnreadMessages = (service) => {
         service = service.split('').filter(el => el !== '/').join('');

@@ -1,0 +1,53 @@
+.Customer{
+    background-color: #fff;
+    padding: 5px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    box-shadow: 1px 5px 5px rgb(221, 221, 221);
+    transition: box-shadow .2s;
+}
+
+.Customer:hover{
+    box-shadow: 1px 8px 5px rgb(199, 199, 199);
+}
+
+.Details{
+    display: inline-block;
+    width: 80%;
+    /* background-color: rgba(95, 158, 160, 0.04); */
+    border-radius: 5px;
+}
+
+.Details h4{
+    padding-left: 10px;
+    color: rgb(62, 88, 88);
+    /* text-align: center; */
+}
+
+.Details h4, .Details .service{
+    display: inline-block;
+    width: 49%;
+    text-transform: capitalize;
+}
+.service{
+    border-right:1.5px solid cadetblue;
+    color: rgb(62, 88, 88);
+}
+.Btn{
+    display: inline-block;
+    width: 20%;
+}
+
+.Btn button{
+    border: none;
+    color: #fff;
+    background-color: cadetblue;
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color .2s;
+    margin-left: 20%;
+}
+
+.Btn button:hover{
+    background-color: rgb(67, 124, 126);
+}
