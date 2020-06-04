@@ -1,5 +1,6 @@
 import * as actionTypes from '../actionTypes';
 import * as firebase from 'firebase';
+import axios from 'axios';
 
 export const getRecordsStart = () => ({type: actionTypes.GET_RECORDS_START});
 
@@ -37,25 +38,36 @@ export const getUncontacted = () => {
     return dispatch => {
         dispatch(getUncontactedStart());
         const unContacted = [];
-
-        firebase.database().ref().once('value')
-        .then(data => {
-            const obj = data.child('/orders').val();
-            for(let key in obj){
-                if(obj[key].contacted === false){
-                    unContacted.push(obj[key]);
+        axios.get('https://wellspring-baa0b.firebaseio.com/orders.json')
+        .then(response => {
+            // console.log(response.data);
+            for(let key in response.data){
+                // console.log('MOre tests: ' + response.data[key]);
+                if(response.data[key].contacted === false){
+                  unContacted.push(response.data[key]);
                 }
             }
-            dispatch(getUncontactSuccess(unContacted))
+            dispatch(getUncontactSuccess(unContacted));
         })
-        .catch(err => {
-            console.log(err)
-            dispatch(getUncontactedFail(err.message));
-        });
-        setTimeout(() => {
-            if(unContacted.length === 0){
-                dispatch(getUncontactedFail('Network Error check your connection!'));
-            }
-        }, 5000);
+        .catch(err => dispatch(getUncontactedFail(err.message)));
+        // firebase.database().ref().once('value')
+        // .then(data => {
+        //     const obj = data.child('/orders').val();
+        //     for(let key in obj){
+        //         if(obj[key].contacted === false){
+        //             unContacted.push(obj[key]);
+        //         }
+        //     }
+        //     dispatch(getUncontactSuccess(unContacted))
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        //     dispatch(getUncontactedFail(err.message));
+        // });
+        // setTimeout(() => {
+        //     if(unContacted.length === 0){
+        //         dispatch(getUncontactedFail('Network Error check your connection!'));
+        //     }
+        // }, 5000);
     }
 }

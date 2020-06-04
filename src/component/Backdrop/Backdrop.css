@@ -3,7 +3,7 @@
     height: 100%;
     background-color: rgba(24, 24, 24, 0.394);
     position: fixed;
-    z-index: 997;
+    z-index: 1100;
 }
 .Remove{
     display: none;

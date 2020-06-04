@@ -17,6 +17,7 @@ import Auth from './container/Auth/Auth';
 import { connect } from 'react-redux';
 import * as actionCreators from './Store/actions/orders';
 import Records from './container/Records/Records';
+import Backdrop from './component/Backdrop/Backdrop';
 // firebase auth:import users.json --hash-algo=scrypt --rounds=8 --mem-cost=14
 
 class App extends Component {
@@ -29,12 +30,7 @@ class App extends Component {
   }
 
 componentDidMount(){
-  console.log(firebase.auth().currentUser);
-  
-    this.setState({loading: true});
-    // this.reloadAppHandler();
     this.props.onFetchOrders(this.props.orders);
-  
 }
 
 
@@ -65,7 +61,9 @@ addAdminHandler = () => {
     );
     if(localStorage.getItem('userEmail') !== null && localStorage.getItem('authToken') !== null ){
       routes = (
-        <Layout 
+        <div>
+          {/* <Backdrop show /> */}
+          <Layout 
           unread={this.props.unread} 
           reload={this.props.onFetchOrders} 
           addAdmin={this.addAdminHandler}
@@ -85,6 +83,7 @@ addAdminHandler = () => {
                 <Redirect to="/" />
               </Switch>
             </Layout>
+        </div>
       );
     }
 

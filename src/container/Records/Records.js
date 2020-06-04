@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// import classes from './Records.css';
+import classes from './Records.css';
 import { faFileContract, faPhone, faPhoneAlt, faPhoneSlash } from '@fortawesome/free-solid-svg-icons';
 import ContactStatusPanel from './contactStatusPanel/contactStatusPanel';
 import RecordsList from './RecordsList/RecordsList';
@@ -25,7 +25,7 @@ const Records = props => {
     )
     
     return(
-        <div>
+        <div className={classes.Records}>
             <ContactStatusPanel panelTitles={panelTitles} />
             {list}
         </div>

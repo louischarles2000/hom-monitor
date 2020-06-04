@@ -5,6 +5,7 @@
     border-radius: 5px;
     box-shadow: 1px 5px 5px rgb(221, 221, 221);
     transition: box-shadow .2s;
+    position: relative;
 }
 
 .Customer:hover{
@@ -36,6 +37,7 @@
 .Btn{
     display: inline-block;
     width: 20%;
+    height: 100%;
 }
 
 .Btn button{
@@ -50,4 +52,59 @@
 
 .Btn button:hover{
     background-color: rgb(67, 124, 126);
+}
+
+.info{
+    /* display: none; */
+    /* transform: translate(60%, -10%); */
+    width: 40%;
+    right: 5%;
+    top: 0%;
+    position: absolute;
+    z-index: 900;
+    box-shadow: 1px 8px 5px rgb(200, 200, 200);
+}
+
+.AddRec{
+    width: 95%;
+    margin: 0px auto;
+}
+
+@media(max-width: 790px){
+    .Details{
+        width: 60%;
+        /* background-color: rgba(95, 158, 160, 0.04); */
+        border-radius: 5px;
+    }
+    .Details h4, .Details .service{
+        width: 40%;
+    }
+    .Details h4{
+        font-size: 14px;
+    }
+    .Btn{
+        width: 40%;
+    }
+    .info{
+        width: 45%;
+    }
+}
+
+@media(max-width: 499px){
+    .Details{
+        width: 75%;
+    }
+    .Details h4, .Details .service{
+        width: 45%;
+    }
+    .Btn{
+        width: 25%;
+    }
+    .Btn button{
+        font-size: 10px;
+        margin-left: 5px;
+    }
+    .info{
+        width: 55%;
+    }
 }

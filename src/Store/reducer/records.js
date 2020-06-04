@@ -8,7 +8,8 @@ const initialState = {
     records: null,
     contacted: null,
     unContacted: null,
-    active: 'records'
+    active: 'records',
+    conatctInfo: null
 }
 
 const getRecordsStart = (state, action) => {
