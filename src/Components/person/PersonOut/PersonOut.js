@@ -9,13 +9,7 @@ const PersonOut = props => {
     const [welcome, setWelcome] = useState(false);
     console.log(props.timeOut);
     const dates = new Date();
-    const date = {
-        minutes: dates.getMinutes(),
-        hours: dates.getHours(),
-        date: dates.getDate(),
-        month: dates.getUTCMonth() + 1,
-        year: dates.getFullYear()
-    }
+    const date = {...props.timeOut}
     let t = (date.hours > 12) ? 'PM' : 'AM';
     const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
     
@@ -36,7 +30,7 @@ const PersonOut = props => {
             <div className={classes.Person}>
                 <Pic img={props.img}/>
                 <p>{props.name}</p>
-                <p>out at: <span>{props.timeOut}</span></p>
+                <p>out at: <span>{clock}</span></p>
             </div>
             <div className={classes.Reason}>
                 <p>Reason for going out:</p>

@@ -21,7 +21,7 @@ const goOutPrompt = props => {
         const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
         // const time = getTime(date.year, date.month, date.date, date.hours, date.minutes) + ', ' + date.year + ', ' + clock;
         console.log(clock);
-        firebase.database().ref().child(`/people/${props.id}/`).update({reason: props.reason, out: true, timeOut: clock})
+        firebase.database().ref().child(`/people/${props.id}/`).update({reason: props.reason, out: true, timeOut: date})
         .then(() => {
             props.reload()
             console.log('Damnnn IT WORKED')

@@ -79,7 +79,7 @@ class App extends Component {
                 key={person.id}
                 name={person.data.name}
                 reason={person.data.reason}
-                timeOut={person.timeOut}
+                timeOut={person.data.timeOut}
                 id={person.id}
                 reload={this.reloadDataFromDatabase}
                 img={person.data.pic}/>
