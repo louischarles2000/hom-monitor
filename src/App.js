@@ -18,7 +18,7 @@ class App extends Component {
     error: null
   }
   componentDidMount(){
-    // console.log('exampl: ' + img);
+    console.log('exampl: ' + img);
     // people.map(person => {
     //   axios.post('https://home-c153e.firebaseio.com/people.json', person)
     //   .then(resp => {
@@ -62,6 +62,7 @@ class App extends Component {
               key={person.id}
               name={person.data.name}
               img={person.data.pic}
+              reload={this.reloadDataFromDatabase}
               id={person.id}/>
           ))
         );
@@ -80,6 +81,7 @@ class App extends Component {
                 reason={person.data.reason}
                 timeOut={person.timeOut}
                 id={person.id}
+                reload={this.reloadDataFromDatabase}
                 img={person.data.pic}/>
           )
           )

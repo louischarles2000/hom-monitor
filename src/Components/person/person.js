@@ -32,7 +32,13 @@ const Person = props => {
                 <button disabled={show} onClick={toggle}>Go out</button>
             </div>
             <div className={cssClasses.join(' ')}>
-                <GoOutPrompt id={props.id} cancel={toggle} done={toggle} reason={reason} changed={onChangeHandler}/>
+                <GoOutPrompt 
+                    id={props.id} 
+                    cancel={toggle} 
+                    done={toggle} 
+                    reason={reason} 
+                    reload={props.reload}
+                    changed={onChangeHandler}/>
             </div>
             
         </div>

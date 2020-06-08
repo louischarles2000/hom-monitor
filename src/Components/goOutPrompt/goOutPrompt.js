@@ -3,21 +3,29 @@ import React, {useState} from 'react';
 import classes from './goOutPrompt.css';
 import * as firebase from 'firebase';
 
+import { getTime } from '../../utility/people';
+
 const goOutPrompt = props => {
     const [error, setError] = useState(null);
     console.log(props.reason);
     const onClickDoneHandler = () => {
-        const date = new Date();
-        const time = {
-            minutes: date.getMinutes(),
-            hours: date.getHours(),
-            date: date.getDate(),
-            month: date.getUTCMonth() + 1
+        const dates = new Date();
+        const date = {
+            minutes: dates.getMinutes(),
+            hours: dates.getHours(),
+            date: dates.getDate(),
+            month: dates.getUTCMonth() + 1,
+            year: dates.getFullYear()
         }
-        firebase.database().ref().child(`/people/${props.id}/`).update({reason: props.reason, out: true, timeOut: time})
-        .then(
-            // props.reload()
+        let t = (date.hours > 12) ? 'PM' : 'AM';
+        const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
+        // const time = getTime(date.year, date.month, date.date, date.hours, date.minutes) + ', ' + date.year + ', ' + clock;
+        console.log(clock);
+        firebase.database().ref().child(`/people/${props.id}/`).update({reason: props.reason, out: true, timeOut: clock})
+        .then(() => {
+            props.reload()
             console.log('Damnnn IT WORKED')
+        }
         ).catch(err => setError('Network problem, please refresh page'));
     }
     return(
@@ -28,7 +36,7 @@ const goOutPrompt = props => {
                 <p>{error ? error : null}</p>
             </div>
             <div>
-                <button className={classes.done} onClick={onClickDoneHandler}>Done</button>
+                <button disabled={props.reason === ''} className={classes.done} onClick={onClickDoneHandler}>Done</button>
                 <button className={classes.cancel} onClick={props.cancel}>Cancel</button>
             </div>
             

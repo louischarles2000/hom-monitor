@@ -23,6 +23,7 @@ import Mike from './Mike.jpg';
 import Onen from './Onen.jpg';
 import Jongole from './Jongole.jpg';
 import Logo from './Louis-Logo.png';
+
 export const people = [
     {name: 'Louis', pic: Louis, out: false, reason: '', timeOut: '', timeIn: ''},
     {name: 'Faida Santa', pic: Faida, out: false, reason: '', timeOut: '', timeIn: ''},
@@ -49,3 +50,36 @@ export const people = [
     {name: 'Blessing', pic: Blessing, out: false, reason: '', timeOut: '', timeIn: ''},
     {name: 'Onen', pic: Onen, out: false, reason: '', timeOut: '', timeIn: ''},
 ]
+
+export const getTime = (year, month, day, hours, minutes) => {
+    const date = new Date();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let  time;
+    const t = (date.hours > 12) ? 'PM' : 'AM';
+    const clock = (hours > 12 ? hours - 12 : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes)+ ' ' + t;
+    if(date.getFullYear() === year){
+        if(date.getMonth() === (month -1)){
+            if(date.getDate() === day){
+                if(date.getHours() === hours){
+                    if(date.getMinutes() === minutes){
+                        time = 'now'
+                    }else if(date.getMinutes() < minutes){
+                        time = 'now';
+                    }else{
+                        time = date.getMinutes() - minutes + ' min';
+                    }
+                }else{
+                    time = clock;
+                }
+            }else{
+                time = day + ' ' + months[month - 1];
+            }
+        }else{
+            time = day + ' ' + months[month - 1];
+        }
+    }else{
+        time = day + ' ' + months[month - 1] + ' ' + year;
+    }
+    return time;
+
+};
