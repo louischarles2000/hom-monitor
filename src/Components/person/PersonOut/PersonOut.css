@@ -1,0 +1,67 @@
+.PersonOut{
+    width: 90%;
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 0px 5px 4px #eee;
+    position: relative;
+}
+
+.PersonOut:hover{
+    box-shadow: 0px 5px 4px rgba(204, 204, 204, 0.761);
+}
+
+.Person{
+    width: 100%;
+}
+
+.Person p{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5%;
+    color: rgb(14, 74, 77);
+}
+.Person p:last-child{
+    float: right;
+    font-size: 15px;
+    margin-right: 5%;
+}
+.Person span{
+    font-weight: bold;
+}
+.Reason{
+    width: 90%;
+    margin: 5px auto;
+}
+.Reason p{
+    display: block;
+    text-decoration: underline;
+}
+.Reason p:last-child{
+    text-decoration: none;
+    color: rgb(16, 84, 87);
+}
+.Btn{
+    width: 100%;
+    position: relative;
+}
+.Btn button{
+    background-color: coral;
+    color: #fff;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    /* width: 20%; */
+    margin-left: 80%;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+.Btn button:hover{
+    background-color: rgb(199, 82, 39);
+}
+
+@media(max-width: 500px){
+    .Btn button{
+        margin-left: 60%;
+    }
+}

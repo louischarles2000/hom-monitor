@@ -1,9 +1,47 @@
 .App{
   margin: 0px;
   padding: 0px;
-  background-color: rgba(236, 236, 236, 0.571);
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-.Remove{
-  overflow-y: hidden;
+
+.Header{
+  background-color: rgba(255, 127, 80, 0.741);
+  /* width: 100%; */
+  margin: 0px;
+  padding: 10px;
+}
+
+.Header h1{
+  color: #fff;
+  text-align: center;
+}
+
+.Container{
+  width: 90%;
+  margin: 15px auto;
+  height: 70vh;
+  background-color: rgba(255, 127, 80, 0.047);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.Notice{
+  width: 60%;
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px auto;
+  box-shadow: 0px 8px 9px #ccc;
+}
+
+.Notice p{
+  color: cadetblue;
+  text-align: center;
+}
+
+@media(max-width: 800px){
+  .Header h1{
+    /* display: none; */
+    font-size: 20px;
+  }
 }

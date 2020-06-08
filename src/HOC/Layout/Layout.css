@@ -5,34 +5,18 @@
 .Header{
     width: 100%;
     height: auto;
-    min-height: 5vh;
     /* border-bottom: 1px solid #555; */
     z-index: 996;
     top: 0px;
     padding: 10px;
-    box-shadow: 1px 2px 4px rgb(180, 179, 179);
-    background-color: rgba(255, 255, 255, 0.687);
-    border-bottom: 1px solid rgb(47, 218, 209);
+    box-shadow: 1px 2px 4px #ccc;
 }
-.HeadingSec{
-    width: 50%;
-    min-width: 200px;
-    display: inline-block;
-}
-.HeadingSec h1{
+.Header h1{
     margin: 0px;
-    position: absolute;
-    display: none;
-    left: 25%;
-    top: 1%;
-    /* color: blueviolet; */
-    /* text-decoration: underline; */
-    text-align: left;
-    font-size: 18px;
+    text-align: center;
+    font-size: 14px;
     letter-spacing: 5px;
     word-spacing: 10px;
-    /* display: inline; */
-    vertical-align: center;
 }
 .Dashboard{
     background-color: rgb(21, 156, 156);
@@ -42,7 +26,6 @@
     border-right: 1px solid rgb(22, 134, 129);
     box-shadow: 1px 0px 8px 1px rgba(29, 87, 77, 0.74);
     z-index: 1900;
-    overflow-y: scroll;
 }
 main{
     float: right;
@@ -50,7 +33,7 @@ main{
     height: auto;
     overflow: hidden;
     /* overflow-y: scroll; */
-    /* background-color: rgba(236, 236, 236, 0.571); */
+    /* background-color: #fff; */
     z-index: 100;
 }
 
@@ -76,9 +59,9 @@ main{
 }
 
 @media(max-width: 430px){
-    
-    .HeadingSec{
-        display: none;
+    .Header h1{
+        text-align: right;
+        padding-right: 30px;
     }
     .Dashboard{
         width: 70%;

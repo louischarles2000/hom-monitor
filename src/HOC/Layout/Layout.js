@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import classes from  './Layout.css';
 import NavigationItems from '../../component/NavigationItems/NavigationItems';
 import Backdrop from '../../component/Backdrop/Backdrop';
-import User from '../../component/User/User';
-import * as firebase from 'firebase';
-import Search from '../../component/Search/Search';
-import Logo from '../../component/logo/logo';
 const burgers = require('react-animated-burgers');
-
 class Layout extends Component{
     state = {
         showManu: false
@@ -22,21 +16,8 @@ class Layout extends Component{
             };
         });
     }
-    backDropHandler = () => {
-        this.setState({showManu: false});
-        this.props.reload();
-    }
-    logOutHandler = () => {
-        firebase.auth().signOut()
-        .then(() => {
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('userEmail');
-                this.props.history.push('/auth');
-            });
-        
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('userEmail');
-            this.props.history.push('/auth');
+    bcakDropHandler = () => {
+        this.setState({showManu: false})
     }
     render(){
         let position;
@@ -55,6 +36,7 @@ class Layout extends Component{
             cssClasses = [classes.Dashboard, classes.Close]
         };
 
+
         return(
             <div className={classes.Layout}>
                     <burgers.HamburgerArrow 
@@ -72,18 +54,12 @@ class Layout extends Component{
                
                 <Backdrop show={this.state.showManu} clicked={this.toggleShowManuHandler}/>
                 <div className={cssClasses.join(' ')}>
-                    <User user={this.props.user} logout={this.logOutHandler} clicked={this.backDropHandler} addAdmin={this.props.addAdmin}/>
-                    <NavigationItems clicked={this.backDropHandler} unread={this.props.unread} reload={this.props.reload}/> 
+                    <NavigationItems clicked={this.bcakDropHandler} unread={this.props.unread}/> 
                 </div>
                 <main>
                     <div className={classes.Header}>
                         <div className={classes.Heading}>
-                            <div className={classes.HeadingSec}>
-                                <Logo />
-                                <h1>WELLSPRINGS ADMIN</h1>
-                            </div>
-                            
-                            <Search />
+                            <h1>WELLSPRINGS ADMIN</h1>
                         </div>
                     </div>
                     {this.props.children}
@@ -93,4 +69,4 @@ class Layout extends Component{
     }
 }
 
-export default withRouter(Layout);
+export default Layout;

@@ -1,0 +1,46 @@
+.goOutPrompt{
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: rgba(185, 238, 240, 0.108);
+}
+
+.goOutPrompt p{
+    color: rgb(36, 95, 97);
+}
+
+.goOutPrompt textarea{
+    width: 80%;
+    margin-top: 5px;
+}
+
+.goOutPrompt div{
+    width: 100%;
+}
+
+.done{
+    padding: 5px 10px;
+    background-color: rgb(41, 192, 197);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: backgound-color .2s;
+}
+.cancel{
+    background-color: transparent;
+    border: none;
+    color: tomato;
+    cursor: pointer;
+    float: right;
+}
+.goOutPrompt .error p{
+    color: coral;
+}
+
+.cancel:hover{
+    font-weight: bold;
+}
+
+.done:hover{
+    background-color: cadetblue;
+}

@@ -1,0 +1,86 @@
+.Person{
+    background-color: #fff;
+    width: 90%;
+    margin: 10px auto;
+    padding: 5px;
+    box-shadow: 0px 5px 4px #eee;
+    transition: box-shadow .2s;
+    position: relative;
+}
+
+.Person:hover{
+    box-shadow: 0px 5px 4px rgba(204, 204, 204, 0.761);
+}
+
+.detail{
+    width: 79%;
+    display: inline-block;
+    margin: 0px;
+}
+
+.detail p{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10%;
+    color: rgb(11, 73, 75);
+}
+
+.detail p:last-child{
+    color: rgb(7, 86, 88);
+}
+
+.Btn{
+    width: 15%;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: top;
+    position: absolute;
+    top: 0px;
+}
+
+.Btn button{
+    margin: 15% auto;
+    border: none;
+    padding: 5px 15px;
+    color: #fff;
+    cursor: pointer;
+    background-color: rgb(86, 180, 184);
+}
+
+.Btn button:hover{
+    background-color: rgb(10, 128, 132);
+}
+
+.Btn button:disabled{
+    background-color: rgba(0, 128, 128, 0.278);
+    cursor: not-allowed;
+}
+
+.drop{
+    height: 0px;
+    overflow: hidden;
+}
+.showReason{
+    animation: drop .5s;
+    height: auto;
+}
+
+@keyframes drop{
+    0%{height: 0px;}
+    100%{height: auto;}
+}
+@media(max-width: 500px){
+    .detail{
+        width: 70%;
+    }
+    .detail p{
+        font-size: 14px;
+    }
+    .Btn{
+        width: 29%
+    }
+    .Btn button{
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
