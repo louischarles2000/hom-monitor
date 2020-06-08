@@ -10,10 +10,8 @@ const AddRecord = props => {
             <h3>Add transaction records</h3>
             <textarea rows="6" placeholder="Add notes here.."/>
             <div className={classes.addBtn}>
-                <FontAwesomeIcon icon={faPlusCircle} />
-                {/* <div className={classes.AddLabel}>
-                    <p>Add record</p>
-                </div> */}
+                <button onClick={props.add}><FontAwesomeIcon icon={faPlusCircle} /> Add</button>
+                <button onClick={props.cancel}>Cancel</button>
             </div>
         </div>
     );

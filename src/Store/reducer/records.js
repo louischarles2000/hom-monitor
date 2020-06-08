@@ -8,7 +8,7 @@ const initialState = {
     records: null,
     contacted: null,
     unContacted: null,
-    active: 'records',
+    active: 'uncontacted',
     conatctInfo: null
 }
 

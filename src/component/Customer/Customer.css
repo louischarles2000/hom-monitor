@@ -54,6 +54,11 @@
     background-color: rgb(67, 124, 126);
 }
 
+.Btn button:disabled{
+    background-color: rgba(125, 157, 158, 0.523);
+    cursor: not-allowed;
+}
+
 .info{
     /* display: none; */
     /* transform: translate(60%, -10%); */
@@ -65,9 +70,35 @@
     box-shadow: 1px 8px 5px rgb(200, 200, 200);
 }
 
+.top{
+    /* display: none; */
+    overflow: hidden;
+}
+
 .AddRec{
     width: 95%;
     margin: 0px auto;
+    overflow: hidden;
+    height: 0px;
+    /* transform: translateY(-100%); */
+    /* animation: height 1s; */
+}
+.AddRec div{
+     /* transform: translateY(-100%); */
+     animation: down 1s;
+}
+.showAddRec{
+    animation: height 1s;
+    height: auto;
+}
+@keyframes height{
+    0%{height: 0px;}
+    100%{height: auto;}
+}
+
+@keyframes down{
+    0%{transform: translateY(-100%);}
+    100%{transform: translateY(0%);}
 }
 
 @media(max-width: 790px){

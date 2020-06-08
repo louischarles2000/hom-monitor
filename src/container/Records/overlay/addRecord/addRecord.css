@@ -12,16 +12,27 @@
 }
 
 .AddRecord textarea{
-    width: 90%;
+    width: 80%;
 }
 
-.addBtn{
+.addBtn button{
     color: cadetblue;
-    font-size: 30px;
+    font-size: 16px;
     margin-left: 4%;
-    width: 5%;
+    /* width: 5%; */
     cursor: pointer;
-    position: relative;
+    border: none;
+    background-color: transparent;
+    margin-right: 10%;
+}
+.addBtn button:last-child{
+    color: tomato;
+    float: right;
+    /* font-size: 18px; */
+}
+
+.addBtn button:hover{
+    font-weight: bold;
 }
 
 .AddLabel{
@@ -42,3 +53,5 @@
 .addBtn:hover{
     color: rgb(81, 134, 136);
 }
+
+/* @media(max-width: ) */
