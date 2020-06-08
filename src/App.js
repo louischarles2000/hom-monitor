@@ -18,14 +18,14 @@ class App extends Component {
     error: null
   }
   componentDidMount(){
-    console.log('exampl: ' + img);
-    people.map(person => {
-      axios.post('https://home-c153e.firebaseio.com/people.json', person)
-      .then(resp => {
-        console.log('SUCCESSFUL!!!!');
-      })
-      .catch(err => console.log(err));
-    });
+    // console.log('exampl: ' + img);
+    // people.map(person => {
+    //   axios.post('https://home-c153e.firebaseio.com/people.json', person)
+    //   .then(resp => {
+    //     console.log('SUCCESSFUL!!!!');
+    //   })
+    //   .catch(err => console.log(err));
+    // });
     this.setState({loading: true});
     this.reloadDataFromDatabase();
   }
@@ -39,7 +39,7 @@ class App extends Component {
       if(resp.data[key].out){
         console.log(resp.data[key].out);
         PipsOut.push({id: key, data: resp.data[key]});
-      }else{
+      }else if(resp.data[key].out === false){
         list.push({id: key, data: resp.data[key]});
       }
     }
