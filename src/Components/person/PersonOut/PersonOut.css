@@ -41,6 +41,21 @@
     text-decoration: none;
     color: rgb(16, 84, 87);
 }
+.PersonOut   .error p{
+    color: coral;
+}
+
+.welcome{
+    background-color: darkcyan;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    animation: pop .5s;
+}
+@keyframes pop{
+    0%{transform: scale(0);}
+    100%{transform: scale(1);}
+}
 .Btn{
     width: 100%;
     position: relative;

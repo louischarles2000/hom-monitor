@@ -26,7 +26,8 @@
     cursor: pointer;
     transition: backgound-color .2s;
 }
-.done:disabled{
+.done:disabled,
+.done:disabled:hover{
     background-color: rgba(0, 139, 139, 0.367);
     cursor: not-allowed;
 }
