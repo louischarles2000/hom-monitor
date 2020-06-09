@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import classes from './PersonOut.css';
 import Pic from '../pic/pic';
 import * as firebase from 'firebase';
+import axios from 'axios';
 
 const PersonOut = props => {
     const [error, setError] = useState(null);
@@ -12,18 +13,28 @@ const PersonOut = props => {
     const date = {...props.timeOut}
     let t = (date.hours > 12) ? 'PM' : 'AM';
     const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
-    
+    const timeIn = {
+        minutes: dates.getMinutes(),
+        hours: dates.getHours(),
+        date: dates.getDate(),
+        month: dates.getUTCMonth() + 1,
+        year: dates.getFullYear()
+    }
     const onBackHomeHandler = () => {
-        firebase.database().ref().child(`/people/${props.id}/`).update({reason: '', out: false, timeIn: clock})
+        firebase.database().ref().child(`/people/${props.id}/`).update({reason: '', out: false, timeIn: timeIn})
         .then(() => {
             setWelcome(true);
-            setTimeout(() => {
-                setWelcome(false);
-                props.reload()
-            }, 2000);
             console.log('Damnnn IT WORKED')
         }
         ).catch(err => setError('Network problem, please refresh page'));
+        const data = {name: props.name, reason: props.reason, timeOut: props.timeOut, timeIn}
+        axios.post('https://home-c153e.firebaseio.com/records.json', data)
+        .then(resp => {
+            setTimeout(() => {
+                setWelcome(false);
+                props.reload()
+            }, 1000);
+        })
     }
     return (
         <div className={classes.PersonOut}>
