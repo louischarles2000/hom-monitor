@@ -11,7 +11,7 @@ import Record from './Components/Record/Record';
 import PeopleList from './container/peopleList';
 import PeopleOutList from './container/peopleOutList';
 import RecordsList from './container/recordsList';
-// import { people } from './utility/people';
+import { people } from './utility/people';
 
 class App extends Component {
   state = {
@@ -25,8 +25,8 @@ class App extends Component {
   componentDidMount(){
     console.log('exampl: ' + img);
  
-    // monitors.map(person => {
-    //   axios.post('https://home-c153e.firebaseio.com/monitors.json', person)
+    // people.map(person => {
+    //   axios.post('https://home-c153e.firebaseio.com/people.json', person)
     //   .then(resp => {
     //     console.log('SUCCESSFUL!!!!');
     //   })
@@ -68,64 +68,6 @@ class App extends Component {
     this.setState({active: route});
   }
   render() {
-    let list = <Spinner />;
-    if(this.state.active === 'people'){
-      if(this.state.people){
-        list = (
-          this.state.people.map(person => (
-            <Person 
-              key={person.id}
-              name={person.data.name}
-              img={person.data.pic}
-              reload={this.reloadDataFromDatabase}
-              id={person.id}/>
-          ))
-        );
-      }
-     
-    };
-    // if(this.state.active === 'people out'){
-    //   console.log(this.state.peopleOut)
-    //   if(this.state.peopleOut){
-    //     console.log(this.state.peopleOut);
-    //     list = (
-    //       this.state.peopleOut.map(person => (
-    //           <PersonOut 
-    //             key={person.id}
-    //             name={person.data.name}
-    //             reason={person.data.reason}
-    //             timeOut={person.data.timeOut}
-    //             id={person.id}
-    //             reload={this.reloadDataFromDatabase}
-    //             img={person.data.pic}/>
-    //       )
-    //       )
-    //     )
-    //   }
-    //   if(this.state.peopleOut && this.state.peopleOut.length === 0){
-    //     list = (
-    //       <div className={classes.Notice}>
-    //         <p>THERE'S NO ONE OUTSIDE AT THE MOMENT!</p>
-    //       </div>
-    //       );
-    //   }
-    //  }
-    //  if(this.state.active === 'records'){
-    //    if(this.state.records){
-    //       list = (
-    //         this.state.records.reverse().map(record => (
-    //           <Record 
-    //             key={record.name + ' ' + record.reason}
-    //             name={record.name}
-    //             reason={record.reason}
-    //             timeOut={record.timeOut}
-    //             reload={this.reloadDataFromDatabase}
-    //             timeIn={record.timeIn}/>
-    //         ))
-    //       );
-    //    }
-        
-    //  }
     return (
       <div className={classes.App}>
         <div className={classes.Header}>
@@ -135,9 +77,9 @@ class App extends Component {
         <div className={classes.Container}>
           {/* <BrowserRouter> */}
             <Switch>
-              <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading}/> } />
-              <Route path="/people-out" render={() => <PeopleOutList peopleOut={this.state.peopleOut} /> } />
-              <Route path="/records" render={() => <RecordsList records={this.state.records} /> } />
+              <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading} reload={this.reloadDataFromDatabase}/> } />
+              <Route path="/people-out" render={() => <PeopleOutList peopleOut={this.state.peopleOut} reload={this.reloadDataFromDatabase} /> } />
+              <Route path="/records" render={() => <RecordsList records={this.state.records} reload={this.reloadDataFromDatabase} /> } />
               <Redirect to="/people" />
             </Switch>
           {/* </BrowserRouter> */}

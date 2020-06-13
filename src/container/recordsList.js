@@ -12,7 +12,7 @@ const RecordsList = props => {
               name={record.name}
               reason={record.reason}
               timeOut={record.timeOut}
-              reload={this.reloadDataFromDatabase}
+              reload={props.reload}
               timeIn={record.timeIn}/>
           ))
         );

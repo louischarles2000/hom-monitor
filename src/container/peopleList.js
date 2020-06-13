@@ -5,13 +5,16 @@ import Spinner from '../Components/Spinner/Spinner';
 const PeopleList = props => {
     let list = '';
     if(props.people){
+        if(props.people.length > 24){
+            props.reload();
+        }
         list = (
           props.people.map(person => (
             <Person 
               key={person.id}
               name={person.data.name}
               img={person.data.pic}
-              reload={this.reloadDataFromDatabase}
+              reload={props.reload}
               id={person.id}/>
           ))
         );

@@ -15,7 +15,7 @@ const PeopleOutList = props => {
                 reason={person.data.reason}
                 timeOut={person.data.timeOut}
                 id={person.id}
-                reload={this.reloadDataFromDatabase}
+                reload={props.reload}
                 img={person.data.pic}/>
           ))
         )
