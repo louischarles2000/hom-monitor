@@ -51,6 +51,48 @@ export const people = [
     {name: 'Onen', pic: Onen, out: false, reason: '', timeOut: '', timeIn: ''},
 ]
 
+export const time = (time) => {
+    const date = {...time}
+    let t = (date.hours > 12) ? 'PM' : 'AM';
+    const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
+    return clock;
+}
+
+export const getTimeSpent = (timeOut, timeIn) => {
+    let time;
+    if(timeOut.month === timeIn.month){
+        // console.log('TESTTTTTTTTTTTTTT')
+        if(timeOut.date === timeIn.date){
+            if(timeOut.hours === timeIn.hours){
+                time = timeIn.minutes - timeOut.minutes + 'mins';
+                return time
+            }else if(timeOut.hours < timeIn.hours){
+                if((timeIn.hours - 1) - timeOut.hours === 0){
+                    time = ((timeIn.minutes + 60) - timeOut.minutes) + 'mins';
+                    return time;
+                }
+                if((timeIn.minutes + 60) - timeOut.minutes > 60){
+                    time = ((timeIn.hours - 1) - (timeOut.hours)) + 1 + 'hr and ' + (((timeIn.minutes + 60) - timeOut.minutes) - 60) + 'mins'
+                    return time
+                }
+                time = (timeIn.hours - 1) - (timeOut.hours) + 'hr and ' + ((timeIn.minutes + 60) - timeOut.minutes) + 'mins'
+                return time
+            }
+        } else {
+            console.log('TESTTTTTTTTTTTTTT');
+            time = timeIn.date - timeOut.date + ' days';
+            return time;
+        }
+    }
+    // return time;
+}
+
+export const writeDate = (time) => {   
+    let date;
+    date = (time.date.toString().length === 1 ? '0' + time.date : time.date) + '/ ' +(time.month.toString().length === 1 ? '0' +  time.month :  time.month )+ '/ ' + time.year;
+    return date;
+}
+
 export const getTime = (year, month, day, hours, minutes) => {
     const date = new Date();
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
