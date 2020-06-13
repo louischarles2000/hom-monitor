@@ -54,7 +54,7 @@ const PersonOut = props => {
                 <p>Don't forget to wash your hands!</p>
             </div> : null}
             <div className={classes.Btn}>
-                <button onClick={onBackHomeHandler}>Back home</button>
+                {localStorage.getItem('currentUser') ? <button onClick={onBackHomeHandler}>Back home</button> : null}
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import classes from './App.css';
 import RoutePanel from './Components/RoutePanel/RoutePanel';
 import Person from './Components/person/person';
@@ -12,6 +12,8 @@ import PeopleList from './container/peopleList';
 import PeopleOutList from './container/peopleOutList';
 import RecordsList from './container/recordsList';
 import { people } from './utility/people';
+import Auth from './container/auth/auth';
+import Notify from './Components/notify/notify';
 
 class App extends Component {
   state = {
@@ -20,7 +22,8 @@ class App extends Component {
     peopleOut: null,
     records: null,
     loading: false,
-    error: null
+    error: null,
+    loggingout: false
   }
   componentDidMount(){
     console.log('exampl: ' + img);
@@ -67,12 +70,28 @@ class App extends Component {
     // this.reloadDataFromDatabase();
     this.setState({active: route});
   }
+  authHAndler = () => {
+    if(localStorage.getItem('currentUser')){
+      localStorage.removeItem('currentUser');
+      this.setState({loggingout: true});
+      setTimeout(() => {
+        this.setState({loggingout: false});
+      }, 3000);
+    }else{
+      this.props.history.push('/auth');
+    }
+  }
   render() {
+    let logging = '';
+    if(this.state.loggingout){
+      logging = <Notify type="danger">Logging out...</Notify>
+    }
     return (
       <div className={classes.App}>
-        <div className={classes.Header}>
+        <div className={classes.Header} onClick={this.authHAndler}>
           <h1>HOME MONITOR</h1>
         </div>
+        {logging}
         <RoutePanel active={this.state.active} reset={this.onChangeActive} reload={this.reloadDataFromDatabase}/>
         <div className={classes.Container}>
           {/* <BrowserRouter> */}
@@ -80,6 +99,7 @@ class App extends Component {
               <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading} reload={this.reloadDataFromDatabase} error={this.state.error}/> } />
               <Route path="/people-out" render={() => <PeopleOutList peopleOut={this.state.peopleOut} reload={this.reloadDataFromDatabase} /> } />
               <Route path="/records" render={() => <RecordsList records={this.state.records} reload={this.reloadDataFromDatabase} /> } />
+              <Route path="/auth" component={Auth} />
               <Redirect to="/people" />
             </Switch>
           {/* </BrowserRouter> */}
@@ -90,4 +110,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
