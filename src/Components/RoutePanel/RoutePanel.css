@@ -1,0 +1,6 @@
+.RoutePanel{
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid cadetblue;
+    min-height: 10px;
+}

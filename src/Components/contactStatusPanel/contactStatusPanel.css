@@ -1,17 +1,23 @@
-.contactStatusPanel{
-    width: 100%;
-    display: block;
-    border-bottom: 1px solid cadetblue;
-}
 
 .panelTitle{
     display: inline-block;
     width: 25%;
     cursor: pointer;
     transition: border-bottom .5s, background-color .5s;
+    padding: 10px 0px;
+    text-align: center;
 }
 
-.ActivePanel{
+.panelTitle a{
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: cadetblue;
+    padding: 5px;
+    text-align: center;
+}
+
+ .Active{
     border-bottom: 2px solid cadetblue;
     font-weight: bold;
     background-color: rgba(250, 176, 80, 0.034);
@@ -31,12 +37,6 @@
     0%{width: 25%;}
     100%{width: 50%;}
 }
-.panelTitle p{
-    text-align: center;
-    text-transform: capitalize;
-    color: cadetblue;
-}
-
 @media (max-width: 810px){
     .panelTitle p{
         font-size: 16px;
@@ -47,21 +47,21 @@
 
 
 @media(max-width: 691px){
-    .panelTitle p{
+    .panelTitle a{
         font-size: 14px;
     }
 
 }
 
 @media(max-width: 495px){
-    .panelTitle p{
+    .panelTitle a{
         font-size: 14px;
         padding: 10px 5px;
     }
 }
 
 @media(max-width: 455px){
-    .panelTitle p{
+    .panelTitle a{
         font-size: 12px;
         padding: 10px 0px;
     }
