@@ -14,6 +14,7 @@ import RecordsList from './container/recordsList';
 import { people } from './utility/people';
 import Auth from './container/auth/auth';
 import Notify from './Components/notify/notify';
+import WeeksComponent from './container/Summary/WeeksComponent/WeeksComponent';
 
 class App extends Component {
   state = {
@@ -63,7 +64,7 @@ class App extends Component {
       this.setState({loading: false, people: list, peopleOut: PipsOut});
     })
     .catch(err => {
-      this.setState({loading: false, error: err});
+      // this.setState({loading: false, error: err});
     });
   };
   onChangeActive = (route) => {
@@ -98,7 +99,8 @@ class App extends Component {
             <Switch>
               <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading} reload={this.reloadDataFromDatabase} error={this.state.error}/> } />
               <Route path="/people-out" render={() => <PeopleOutList peopleOut={this.state.peopleOut} reload={this.reloadDataFromDatabase} /> } />
-              <Route path="/records" render={() => <RecordsList records={this.state.records} reload={this.reloadDataFromDatabase} /> } />
+              <Route path="/records" render={() => <RecordsList records={this.state.records} loading={this.state.loading} reload={this.reloadDataFromDatabase} /> } />
+              <Route path="/weeks" render={() => <WeeksComponent records={this.state.records}/>} />
               <Route path="/auth" component={Auth} />
               <Redirect to="/people" />
             </Switch>

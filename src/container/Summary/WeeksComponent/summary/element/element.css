@@ -1,0 +1,12 @@
+.element{
+    width: 95%;
+    /* background-color: #fff; */
+    border-bottom: 1px solid cadetblue;
+}
+
+.element p{
+    display: block;
+    width: 90%;
+    margin: 2px auto;
+    font-size: 14px;
+}

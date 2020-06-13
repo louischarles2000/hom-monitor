@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Record from '../Components/Record/Record';
+import SummaryBtn from './Summary/SummaryBtn/SummaryBtn';
+import Spinner from '../Components/Spinner/Spinner';
+import WeeksComponent from './Summary/WeeksComponent/WeeksComponent';
 
 const RecordsList = props => {
+  const onCLick = () => {
+    console.log('CLICKKKKKKKKKKKKED')
+    props.history.push('/weeks');
+  }
     let list;
     if(props.records){
         list = (
@@ -17,9 +25,17 @@ const RecordsList = props => {
           ))
         );
      }else{
-         list = <p>Nothing</p>
+         list = <p>An error occured</p>
      }
-    return list;
+     if(props.loading){
+       list = <Spinner />
+     }
+    return (
+     <div>
+        <SummaryBtn clicked={onCLick}/>
+        {list}
+     </div>
+    );
 }
 
-export default RecordsList;
+export default withRouter(RecordsList);

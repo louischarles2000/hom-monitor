@@ -1,0 +1,47 @@
+.summary{
+    background-color: #eee;
+    width: 100%;
+    margin: 5px auto;
+    box-shadow: 0px 6px 16px rgb(170, 170, 170);;
+    border-radius: 5px;
+}
+.summary p{
+    padding: 5px;
+}
+
+.first{
+    width: 98%;
+    display: block;
+}
+.first p{
+    display: inline-block;
+}
+.first p:first-child{
+    width: 80%;
+}
+.first p:last-child{
+    text-align: right;
+    font-size: 20px;
+    color: cadetblue;
+    animation: move .5s infinite;
+}
+
+span{
+    color: cadetblue;
+}
+.drop{
+    background-color: rgba(255, 255, 255, 0.741);
+    width: 95%;
+    margin: 0px auto;
+    height: 0px;
+    overflow: hidden;
+}
+.show{
+    animation: drop .5s;
+    height: auto;
+}
+@keyframes move{
+    0%{transform: scaleY(1);}
+    50%{transform: scaleY(1.5);}
+    100%{transform: scaleY(1.05);}
+}
