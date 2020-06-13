@@ -61,9 +61,12 @@ export const time = (time) => {
 export const getTimeSpent = (timeOut, timeIn) => {
     let time;
     if(timeOut.month === timeIn.month){
-        // console.log('TESTTTTTTTTTTTTTT')
         if(timeOut.date === timeIn.date){
             if(timeOut.hours === timeIn.hours){
+                if(timeIn.minutes - timeOut.minutes === 0){
+                    time = '1min';
+                    return time;
+                }
                 time = timeIn.minutes - timeOut.minutes + 'mins';
                 return time
             }else if(timeOut.hours < timeIn.hours){
