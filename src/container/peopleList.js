@@ -1,6 +1,7 @@
 import React from 'react';
 import Person from '../Components/person/person';
 import Spinner from '../Components/Spinner/Spinner';
+import classes from '../container/styles.css';
 
 const PeopleList = props => {
     let list = '';
@@ -18,6 +19,13 @@ const PeopleList = props => {
               id={person.id}/>
           ))
         );
+      }
+      if(props.error){
+          list = (
+              <div className={classes.Error}>
+                  <p>{props.error}</p>
+              </div>
+          )
       }
     if(props.loading){
         list = <Spinner />

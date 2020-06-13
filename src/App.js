@@ -77,7 +77,7 @@ class App extends Component {
         <div className={classes.Container}>
           {/* <BrowserRouter> */}
             <Switch>
-              <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading} reload={this.reloadDataFromDatabase}/> } />
+              <Route path="/people" render={() => <PeopleList people={this.state.people} loading={this.state.loading} reload={this.reloadDataFromDatabase} error={this.state.error}/> } />
               <Route path="/people-out" render={() => <PeopleOutList peopleOut={this.state.peopleOut} reload={this.reloadDataFromDatabase} /> } />
               <Route path="/records" render={() => <RecordsList records={this.state.records} reload={this.reloadDataFromDatabase} /> } />
               <Redirect to="/people" />

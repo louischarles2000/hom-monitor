@@ -10,9 +10,11 @@ const goOutPrompt = props => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(false);
+    const [test, setTest] = useState(false);
     console.log(props.reason);
 
     const onClickDoneHandler = () => {
+        setError(null);
         setLoading(true);
         setDisabled(true);
         const dates = new Date();
@@ -26,11 +28,12 @@ const goOutPrompt = props => {
         let t = (date.hours > 12) ? 'PM' : 'AM';
         const clock = (date.hours > 12 ? date.hours - 12 : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes)+ ' ' + t;
         // const time = getTime(date.year, date.month, date.date, date.hours, date.minutes) + ', ' + date.year + ', ' + clock;
-        console.log(clock);
+        // console.log(clock);
         firebase.database().ref().child(`/people/${props.id}/`).update({reason: props.reason, out: true, timeOut: date})
         .then(() => {
             setLoading(false);
             props.reload();
+            setTest(true);
             console.log('Damnnn IT WORKED')
         }
         ).catch(err => {
@@ -38,6 +41,14 @@ const goOutPrompt = props => {
             setError('Network problem, try refreshing the page');
             setDisabled(false)
         });
+        setTimeout(() => {
+            if(!test){
+                setLoading(false);
+                setDisabled(false);
+                setError('Network problem, Resend or try refreshing the page');
+            }
+         
+        }, 20000);
     }
     let spin = '';
     if(loading){
