@@ -10,7 +10,7 @@ import FaidaBig from './Faida-big.jpg';
 import Foni from './Foni.jpg';
 import Gloria from './Gloria.jpg';
 import Grace from './Grace.jpg';
-import Grany from './Grany.jpg';
+import Grany from './Grany.png';
 import Louis from './Louis.jpg';
 import MamaFifi from './Mama-fifi.jpg';
 import Mosze from './Mosze.jpg';
