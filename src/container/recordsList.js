@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Record from '../Components/Record/Record';
 import SummaryBtn from './Summary/SummaryBtn/SummaryBtn';
 import Spinner from '../Components/Spinner/Spinner';
-import WeeksComponent from './Summary/WeeksComponent/WeeksComponent';
+// import WeeksComponent from './Summary/WeeksComponent/WeeksComponent';
 
 const RecordsList = props => {
   const onCLick = () => {

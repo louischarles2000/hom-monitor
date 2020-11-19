@@ -22,7 +22,7 @@ import Luka from './Luka.jpg';
 import Mike from './Mike.jpg';
 import Onen from './Onen.jpg';
 import Jongole from './Jongole.jpg';
-import Logo from './Louis-Logo.png';
+// import Logo from './Louis-Logo.png';
 
 export const people = [
     {name: 'Louis', pic: Louis, out: false, reason: '', timeOut: '', timeIn: ''},

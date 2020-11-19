@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import classes from './WeeksComponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCalendarWeek, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
-import Record from '../../../Components/Record/Record';
+// import Record from '../../../Components/Record/Record';
 import Summary from './summary/summary';
 
 const WeeksComponent = props => {

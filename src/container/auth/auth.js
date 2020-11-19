@@ -60,12 +60,14 @@ const Auth = props => {
                 else {
                     setMessage('Wrong user!');
                 }
+                return true;
             })
         }
         
     }
 
     let login = '', err = '', log = '';
+    console.log(log);
     if(message){
         err = (
             <div className={classes.Err}>

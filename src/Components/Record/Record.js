@@ -7,7 +7,7 @@ const Record = props => {
     const now = new Date();
     console.log('time' + now.getTime())
    
-    let date, timeSpent;
+    let date;
     date = (props.timeOut.date.toString().length === 1 ? '0' + props.timeOut.date : props.timeOut.date) + '/ ' +(props.timeOut.month.toString().length === 1 ? '0' +  props.timeOut.month :  props.timeOut.month )+ '/ ' + props.timeOut.year;
     return(
         <div className={classes.Record}>
