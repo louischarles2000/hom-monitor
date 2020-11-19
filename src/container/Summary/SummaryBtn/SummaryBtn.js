@@ -7,7 +7,7 @@ import { faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 const SummaryBtn = props => {
     return(
         <div className={classes.SummaryBtn} onClick={props.clicked}>
-            <FontAwesomeIcon icon={faCalendarWeek} /> Week
+            <FontAwesomeIcon icon={faCalendarWeek} /> Count
         </div>
     );
 }

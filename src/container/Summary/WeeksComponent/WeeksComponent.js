@@ -50,7 +50,7 @@ const WeeksComponent = props => {
     <div className={classes.WeeksComponent}>
         <div className={classes.top}>
             <button onClick={onoCancel}><FontAwesomeIcon icon={faArrowLeft}/> Back</button>
-            <h2  onClick={showHAndler}><FontAwesomeIcon icon={faCalendarWeek}/> This week</h2>
+            <h2  onClick={showHAndler}><FontAwesomeIcon icon={faCalendarWeek}/> Number of Outings</h2>
         </div>
         <div className={listCss.join(' ')}>
             {people ? people.map(person => (
